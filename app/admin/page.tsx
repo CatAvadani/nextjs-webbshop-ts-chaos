@@ -1,10 +1,12 @@
-"use client";
+'use client';
 
-import { Product, products } from "@/data";
-import { Link } from "@chakra-ui/next-js";
+import { Product } from '@/data';
+import { DeleteIcon, EditIcon } from '@chakra-ui/icons';
+import { Link } from '@chakra-ui/next-js';
 import {
   Button,
   Flex,
+  IconButton,
   Image,
   Modal,
   ModalBody,
@@ -21,10 +23,10 @@ import {
   Thead,
   Tr,
   useDisclosure,
-} from "@chakra-ui/react";
-import NextLink from "next/link";
-import { useState } from "react";
-import { useAdmin } from "../contexts/AdminContext";
+} from '@chakra-ui/react';
+import NextLink from 'next/link';
+import { useState } from 'react';
+import { useAdmin } from '../contexts/AdminContext';
 
 export default function AdminHomePage() {
   const { products, removeProduct } = useAdmin();
@@ -46,7 +48,7 @@ export default function AdminHomePage() {
 
   return (
     <>
-      <Flex justify='center' m='5'>
+      <Flex justify='center' m='6'>
         <Modal isOpen={isOpen} onClose={onClose}>
           <ModalOverlay />
           <ModalContent>
@@ -61,7 +63,7 @@ export default function AdminHomePage() {
                 bg='green.400'
                 color='white'
                 onClick={onClose}
-                _hover={{ bg: "green.300 " }}
+                _hover={{ bg: 'green.300 ' }}
                 data-cy='confirm-delete-button'
               >
                 Cancel
@@ -74,20 +76,21 @@ export default function AdminHomePage() {
         </Modal>
         <NextLink href='/admin/product/new' data-cy='admin-add-product'>
           <Button
-            bg='rgba(78, 199, 145, 1)'
-            color='white'
-            size='lg'
+            color='black'
+            fontSize='1.3rem'
+            w={{ base: '200px', md: '300px' }}
+            h='55px'
             _hover={{
-              transform: "translateY(2px)",
-              boxShadow: "lg",
+              transform: 'translateY(2px)',
+              boxShadow: 'lg',
             }}
           >
-            Add Product
+            ADD PRODUCT
           </Button>
         </NextLink>
       </Flex>
 
-      <TableContainer style={{ width: "100%", overflowX: "auto" }}>
+      <TableContainer style={{ width: '100%', overflowX: 'auto' }}>
         <Table>
           <Thead>
             <Tr>
@@ -112,7 +115,7 @@ export default function AdminHomePage() {
                 <Td data-cy='product-id'>{product.id}</Td>
                 <Td data-cy='product-title'>{product.title}</Td>
                 <Td
-                  style={{ whiteSpace: "normal", width: "300px" }}
+                  style={{ whiteSpace: 'normal', width: '300px' }}
                   data-cy='product-description'
                 >
                   {product.description.length > 100
@@ -121,37 +124,42 @@ export default function AdminHomePage() {
                 </Td>
                 <Td data-cy='product-price'>{product.price}</Td>
                 <Td>
-                  <Flex justify="center" alignItems="center" height="100%">
+                  <Flex
+                    justify='center'
+                    alignItems='center'
+                    height='100%'
+                    gap={3}
+                  >
                     <Link
                       href={`admin/product/${product.id}`}
-                      _hover={{ textDecoration: "none" }}
+                      _hover={{ textDecoration: 'none' }}
                     >
-                      <Button
-                        data-cy="admin-edit-product"
-                        bg="rgba(78, 199, 145, 1)"
-                        color="white"
-                        size="sm"
-                        mr="3px"
+                      <IconButton
+                        aria-label='Remove Product'
+                        data-cy='admin-remove-product'
+                        size='sm'
                         _hover={{
-                          transform: "translateY(2px)",
-                          boxShadow: "lg",
+                          transform: 'translateY(2px)',
+                          boxShadow: 'lg',
                         }}
+                        onClick={() => handleDeleteClick(product)}
                       >
-                        Edit
-                      </Button>
+                        <EditIcon fontSize={'1.5rem'} m={'5px'} />
+                      </IconButton>
                     </Link>
-                    <Button
+                    <IconButton
+                      aria-label='Remove Product'
                       data-cy='admin-remove-product'
-                      colorScheme='red'
+                      color={'red'}
                       size='sm'
                       _hover={{
-                        transform: "translateY(2px)",
-                        boxShadow: "lg",
+                        transform: 'translateY(2px)',
+                        boxShadow: 'lg',
                       }}
                       onClick={() => handleDeleteClick(product)}
                     >
-                      Delete
-                    </Button>
+                      <DeleteIcon fontSize={'1.5rem'} />
+                    </IconButton>
                   </Flex>
                 </Td>
               </Tr>

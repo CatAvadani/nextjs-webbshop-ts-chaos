@@ -1,16 +1,21 @@
+'use client';
 import {
   Box,
   Center,
   Container,
+  Flex,
   Heading,
+  Icon,
   SimpleGrid,
   Stack,
   Tag,
 } from '@chakra-ui/react';
+import { BsInstagram } from 'react-icons/bs';
+import { FaFacebookF, FaLinkedinIn } from 'react-icons/fa6';
 
 export function MiddleFooter() {
   return (
-    <Center as='footer' bg='#FEE0B3'>
+    <Center as='footer' bg='#FEE0B3' display={'flex'} flexDir={'column'}>
       <Box color='black'>
         <center>
           <Heading
@@ -72,6 +77,30 @@ export function MiddleFooter() {
           </SimpleGrid>
         </Container>
       </Box>
+      <Flex gap={'5'} p={'6'} fontSize={'2rem'}>
+        {' '}
+        <Icon
+          as={FaLinkedinIn}
+          transition={'all 0.2s ease-in-out'}
+          _hover={{
+            transform: 'scale(1.2)',
+          }}
+        />
+        <Icon
+          as={FaFacebookF}
+          transition={'all 0.2s ease-in-out'}
+          _hover={{
+            transform: 'scale(1.2)',
+          }}
+        />
+        <Icon
+          as={BsInstagram}
+          transition={'all 0.2s ease-in-out'}
+          _hover={{
+            transform: 'scale(1.2)',
+          }}
+        />
+      </Flex>
     </Center>
   );
 }

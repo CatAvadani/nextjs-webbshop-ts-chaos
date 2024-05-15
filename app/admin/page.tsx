@@ -136,13 +136,12 @@ export default function AdminHomePage() {
                     >
                       <IconButton
                         aria-label='Remove Product'
-                        data-cy='admin-remove-product'
+                        data-cy='admin-edit-product'
                         size='sm'
                         _hover={{
                           transform: 'translateY(2px)',
                           boxShadow: 'lg',
                         }}
-                        onClick={() => handleDeleteClick(product)}
                       >
                         <EditIcon fontSize={'1.5rem'} m={'5px'} />
                       </IconButton>
